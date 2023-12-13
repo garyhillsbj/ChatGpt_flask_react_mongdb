@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>POST Example</title>
+</head>
+<body>
+    <input type="text" id="inputText">
+    <button onclick="postData()">Add</button>
+
+    <script>
+        function postData() {
+            var input = document.getElementById("inputText").value;
+            var data = { question: input };
+
+            fetch('http://localhost:8000/api/home', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+</html>
